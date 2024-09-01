@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Author List</title>
+</head>
+<body>
+    <h1>Author List</h1>
+
+    <ul>
+        {% for author in authors %}
+        <li>
+            {{ author.name }}
+            <button><a href="{% url 'delete_author' author.id %}">Delete</a></button>
+            <button><a href="{% url 'edit_author' author.id %}">Edit</a></button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <button><a href="{% url 'add_author' %}">Add New Author</a></button>
+<button><a href="{% url 'book_list' %}">Back to Book List</a></button>
+</body>
+</html>

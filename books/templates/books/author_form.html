@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Author</title>
+    <title>{% if form.instance.pk %}Edit Author{% else %}Add Author{% endif %}</title>
 </head>
 <body>
-    <h1>Add a New Author</h1>
+    <h1>{% if form.instance.pk %}Edit Author{% else %}Add Author{% endif %}</h1>
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Author</button>
-    </form><br>
+        <button type="submit">{% if form.instance.pk %}Save Changes{% else %}Add Author{% endif %}</button>
+    </form>
+
+    <button><a href="{% url 'author_list' %}">Go to Author List</a></button>
     <button><a href="{% url 'book_list' %}">Back to Book List</a></button>
 </body>
 </html>

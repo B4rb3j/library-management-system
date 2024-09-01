@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Book List</h1>
+    <p><button><a href="{% url 'author_list' %}">Go to Author List</a></button></p>
     <form method="GET" action="{% url 'search_books' %}">
         <input type="text" name="query" placeholder="Search by title or author">
         <button type="submit">Search</button>
@@ -25,8 +26,8 @@
         </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'add_author' %}"><button>Add a new author</button></a>
-    <a href="{% url 'add_book' %}"><button>Add a new book</button></a>
+    <a href="{% url 'add_author' %}"><button>Add a new Author</button></a>
+    <a href="{% url 'add_book' %}"><button>Add a new Book</button></a>
     <a href="{% url 'filter_books' %}"><button>Filter Books</button></a>
 </body>
 </html>

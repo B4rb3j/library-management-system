@@ -14,6 +14,23 @@ def add_author(request):
     return render(request, 'books/author_form.html', {'form': form})
 
 
+def edit_author(request, author_id):
+    author = get_object_or_404(Author, pk=author_id)
+    if request.method == 'POST':
+        form = AuthorForm(request.POST, instance=author)
+        if form.is_valid():
+            form.save()
+            return redirect('author_list')
+    else:
+        form = AuthorForm(instance=author)
+    return render(request, 'books/author_form.html', {'form': form})
+
+
+def author_list(request):
+    authors = Author.objects.all()
+    return render(request, 'books/author_list.html', {'authors': authors})
+
+
 def book_list(request):
     books = Book.objects.all().select_related('author')
     return render(request, 'books/book_list.html', {'books': books})
@@ -94,3 +111,14 @@ def delete_filtered_books(request):
             Book.objects.filter(id__in=books_to_delete).delete()
 
     return redirect('filter_books')
+
+
+def delete_author(request, author_id):
+    author = get_object_or_404(Author, id=author_id)
+    books = Book.objects.filter(author=author)
+
+    if request.method == 'POST':
+        author.delete()
+        return redirect('author_list')  # به صفحه لیست نویسندگان یا هر صفحه دیگری که مناسب است هدایت شود
+
+    return render(request, 'books/confirm_delete_author.html', {'author': author, 'books': books})

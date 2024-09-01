@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Delete Author</title>
+</head>
+<body>
+    <h1>Confirm Delete Author</h1>
+
+    <p>Are you sure you want to delete the author "{{ author.name }}"?</p>
+
+    {% if books %}
+        <p>The following books will also be deleted:</p>
+        <ul>
+            {% for book in books %}
+            <li>{{ book.title }} (Published: {{ book.published_date }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>This author has no books associated with them.</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <button><a href="{% url 'author_list' %}">No, Go Back</a></button>
+</body>
+</html>
