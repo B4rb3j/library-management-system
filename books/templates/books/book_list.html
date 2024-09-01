@@ -21,8 +21,8 @@
                                          {% else %}
                                              Unknown Genre
                                          {% endif %} ${{ book.price }}
-            <a href="{% url 'edit_book' book.id %}">Edit</a> |
-            <a href="{% url 'delete_book' book.id %}">Delete</a>
+            <button><a href="{% url 'edit_book' book.id %}">Edit</a></button>
+            <button><a href="{% url 'delete_book' book.id %}">Delete</a></button>
         </li>
         {% endfor %}
     </ul>
