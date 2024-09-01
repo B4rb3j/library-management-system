@@ -67,7 +67,7 @@ def filter_books(request):
 
 def filtered_results(request):
     price = request.GET.get('price')
-    m_price = request.GET.get('price')
+    max_price = request.GET.get('max_price')
     date = request.GET.get('date')
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
@@ -78,8 +78,8 @@ def filtered_results(request):
         books = books.filter(published_date__range=[start_date, end_date])
     if price:
         books = books.filter(price=price)
-    if m_price:
-        books = books.filter(price__lte=m_price)
+    if max_price:
+        books = books.filter(price__lte=max_price)
     if date:
         books = books.filter(published_date=date)
 
