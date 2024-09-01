@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }} Details</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <p><strong>Author:</strong> {{ book.author.name }}</p>
+    <p><strong>Price:</strong> {{ book.price }}$</p>
+    <p><strong>Publication Date:</strong> {{ book.published_date }}</p>
+    <p><strong>Genre:</strong>
+    {% if book.genre %}
+        {{ book.genre }}
+    {% else %}
+        Unknown Genre
+    {% endif %}
+    </p>
+    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+    <button><a href="{% url 'edit_book' book.id %}">Edit</a></button>
+    <button><a href="{% url 'delete_book' book.id %}">Delete</a></button>
+    <button><a href="{% url 'book_list' %}">Back to List</a></button>
+</body>
+</html>

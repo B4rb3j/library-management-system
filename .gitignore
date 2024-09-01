@@ -1,0 +1,25 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+# Ignore local env file
+.env
+
+# Ignore database
+db.sqlite3
+
+# Ignore migrations
+*/migrations/*
+
+# Ignore compiled CSS/JS files
+staticfiles/
+
+# Ignore media files
+media/
+
+# Ignore IDE files
+.vscode/
+.idea/
+

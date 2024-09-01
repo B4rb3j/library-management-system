@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filtered Books</title>
+</head>
+<body>
+    <h1>Filtered Books</h1>
+
+    {% if books %}
+    <form method="POST" action="{% url 'delete_filtered_books' %}">
+        {% csrf_token %}
+        <ul>
+            {% for book in books %}
+            <li>
+                <input type="checkbox" name="books_to_delete" value="{{ book.id }}">{{ book.title }}
+            by {{ book.author.name }}
+            on {{ book.published_date }} Genre:
+                                         {% if book.genre %}
+                                             {{ book.genre }}
+                                         {% else %}
+                                             Unknown Genre
+                                         {% endif %} ${{ book.price }}
+            </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Delete Selected Books</button>
+    </form>
+    {% else %}
+        <p>No books found matching the criteria.</p>
+    {% endif %}
+
+    <br><button><a href="{% url 'filter_books' %}">Back to Filter</a></button>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book List</title>
+</head>
+<body>
+    <h1>Book List</h1>
+    <form method="GET" action="{% url 'search_books' %}">
+        <input type="text" name="query" placeholder="Search by title or author">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for book in books %}
+        <li>
+            <button><a href="{% url 'book_detail' book.id %}">{{ book.title }}</a></button>
+            by {{ book.author.name }}
+            on {{ book.published_date }} Genre:
+                                         {% if book.genre %}
+                                             {{ book.genre }}
+                                         {% else %}
+                                             Unknown Genre
+                                         {% endif %} ${{ book.price }}
+            <a href="{% url 'edit_book' book.id %}">Edit</a> |
+            <a href="{% url 'delete_book' book.id %}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_author' %}"><button>Add a new author</button></a>
+    <a href="{% url 'add_book' %}"><button>Add a new book</button></a>
+    <a href="{% url 'filter_books' %}"><button>Filter Books</button></a>
+</body>
+</html>

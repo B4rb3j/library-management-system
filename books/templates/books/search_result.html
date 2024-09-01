@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    {% if books %}
+        <ul>
+            {% for book in books %}
+                <li>
+                    <button><a href="{% url 'book_detail' book.id %}">{{ book.title }}</a></button>
+            by {{ book.author.name }}
+            on {{ book.published_date }} Genre:
+                                         {% if book.genre %}
+                                             {{ book.genre }}
+                                         {% else %}
+                                             Unknown Genre
+                                         {% endif %} ${{ book.price }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books found matching your search criteria.</p>
+    {% endif %}
+
+    <button><a href="{% url 'book_list' %}">Back to Book List</a></button>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filter Books</title>
+</head>
+<body>
+    <h1>Filter Books</h1>
+    <form method="GET" action="{% url 'filtered_results' %}">
+        <input type="number" name="price" placeholder="Exact Price"><br>
+        <input type="number" name="m_price" placeholder="Max Price"><br>
+        <label for="exact_date">Exact Date:</label>
+        <input type="date" name="date" placeholder="Select a date"><br>
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date">
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date"><br>
+        <button type="submit">Filter</button>
+    </form><br>
+    <button><a href="{% url 'book_list' %}">Back to Book List</a></button>
+</body>
+</html>
